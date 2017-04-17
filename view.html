@@ -12,26 +12,25 @@
 <body>
 	<hr>
 	<h2><i>Quote</i></h2>
-	<input class = "buttonDec" type = "button" onclick = "mode(this)" id = "register" value = "Register">
-	<input class = "buttonDec" type = "button" onclick = "mode(this)" id = "login" value = "Login">
-	<input class = "buttonDec" type = "button" onclick = "mode(this)" id = "add" value = "AddQuote">
+	<form action = "controller.php" method = "post">
+	<input class = "buttonDec" type = "submit" name = "input" value = "Register">
+	<input class = "buttonDec" type = "submit" name = "input" value = "Login">
+	<input class = "buttonDec" type = "submit" name = "input" value = "AddQuote">
+	</form>
 	<div class = "clearBoth" id="toChange">QUOTES!!!</div>
 	
-
 
 	<script>
 	var divToChange = document.getElementById("toChange");
 	function mode(input){
 		var anObj = new XMLHttpRequest();
 		input = input.defaultValue;
-		if(input == "Register" ){
-			window.location = 'register.php';
-		}
-		else if(input == "Login"){ // call login function and show Login interface
-			window.location = 'login.php';
-		}
-		else{// call add Quote function and show add Quote PHP page
-			window.location = 'addQuote.php';
+		
+		anObj.open("GET", "controller.php?mode="+input, true);
+		anObj.send();
+		
+		anObj.onreadystatechange = function() {
+                 //render output data
 		} 
 	}
 	function refresh() {
