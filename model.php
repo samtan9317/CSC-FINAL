@@ -13,6 +13,7 @@ class DatabaseAdaptor {
     $user = 'root';
     $password = '';
     
+    
     try {
       $this->DB = new PDO ( $db, $user, $password );
       $this->DB->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
