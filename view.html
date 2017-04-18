@@ -11,42 +11,30 @@
 </head>
 <body>
 	<hr>
-	<h2><i>Quote</i></h2>
-	<form action = "controller.php" method = "post">
-	<input class = "buttonDec" type = "submit" name = "input" value = "Register">
-	<input class = "buttonDec" type = "submit" name = "input" value = "Login">
-	<input class = "buttonDec" type = "submit" name = "input" value = "AddQuote">
+	<h2><i>Quotes</i></h2>
+	<form action =  "controller.php" method = "post">
+	<input class = "buttonDec" type = "submit" name = "register_button" value = "Register">
+	<input class = "buttonDec" type = "submit" name = "login_button" value = "Login">
+	<input class = "buttonDec" type = "submit" name = "addQuote_button" value = "AddQuote">
 	</form>
 	<div class = "clearBoth" id="toChange">QUOTES!!!</div>
 	
-
-	<script>
+	
+	
+<script>
 	var divToChange = document.getElementById("toChange");
-	function mode(input){
-		var anObj = new XMLHttpRequest();
-		input = input.defaultValue;
-		
-		anObj.open("GET", "controller.php?mode="+input, true);
-		anObj.send();
-		
-		anObj.onreadystatechange = function() {
-                 //render output data
-		} 
-	}
-	function refresh() {
-			
-			var anObj = new XMLHttpRequest();
-			debugger;
-			input = input.defaultValue;
+	function submitEvent(){
+	var anObj = new XMLHttpRequest();
+	debugger;
 
-			anObj.open("GET", "controller.php?mode="+input, true);
-			anObj.send();
+	anObj.open("GET","controller.php", true);
+	anObj.send();
+	
+	anObj.onreadystatechange = function() {
+             //render output data
+	} 
 			
-			anObj.onreadystatechange = function() {
-                     //render output data
-			} 
-					
-			}
+	}
 	</script>
 
 </body>

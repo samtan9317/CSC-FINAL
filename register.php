@@ -10,7 +10,9 @@
 </head>
 <body>
 <?php
-echo "I'M REGISTER.";
+include 'model.php';
+$User = $_POST['user'];
+$Pass = $_POST['pass'];
 ?>
 </body>
 </html>

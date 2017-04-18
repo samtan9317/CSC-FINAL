@@ -1,11 +1,12 @@
 @CHARSET "UTF-8";
 .buttonDec{
 	background-color:grey;
-	border-radius:15px;
+	border-radius:10px;
 	float:left;
 	display:inline;
-	margin:5px;
-	padding:5px 10px;
+	margin:2px;
+	padding:10px 10px;
+	color: white;
 }
 
 .clearBoth{
