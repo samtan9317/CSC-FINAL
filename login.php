@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <!DOCTYPE html>
 <!--
 
@@ -56,8 +56,5 @@ if(isset($_GET['login'])){
 
 </body>
 </html>
-=======
-<?php
-echo "I'M LOGIN.php";
-?>
->>>>>>> refs/remotes/origin/master
+
+
