@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<!-- 
-
-
--->
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Register</title>
-</head>
-<body>
 <?php
-echo "I'M REGISTER.";
+include 'model.php';
+$User = $_POST['user'];
+$Pass = $_POST['pass'];
+//echo $User . " " . $Pass;
+
+//$BS = $theDBA->addNewUser( $User, $Pass );
+
+
 ?>
-</body>
-</html>

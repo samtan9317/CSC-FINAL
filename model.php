@@ -23,11 +23,15 @@ class DatabaseAdaptor {
     }
   }
   
-  // Return all movies records as an associative array.
+  // Return all movies quotes as an associative array.
   public function getAllQuotes() {
   	$stmt = $this->DB->prepare ( "SELECT * FROM quotes" );
   	$stmt->execute ();
   	return $stmt->fetchAll ( PDO::FETCH_ASSOC );
+  }
+  
+  public function addNewUser(string $user, string $pass) {
+  	return;
   }
   
 
@@ -36,8 +40,8 @@ class DatabaseAdaptor {
 
 // Testing code that should not be run when a part of MVC
 $theDBA = new DatabaseAdaptor ();
-$arr = $theDBA->getAllQuotes ();
-print_r($arr);
+//$arr = $theDBA->getAllQuotes ();
+//print_r($arr);
 
  
 ?>
