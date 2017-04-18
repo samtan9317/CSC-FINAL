@@ -53,7 +53,11 @@ CREATE TABLE `quotes` (
   `phrase` varchar(1000) DEFAULT NULL,
   `author` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
+<<<<<<< HEAD
 ) ENGINE= DEFAULT CHARSET=utf8;
+=======
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+>>>>>>> refs/remotes/origin/master
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
