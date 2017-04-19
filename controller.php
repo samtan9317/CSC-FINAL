@@ -12,7 +12,7 @@
 
  //check if input value was passed correctly to php
 
-$input = $_GET['input'];
+$input = $_POST['input'];
 if($input == 'Register' ){
 	header('location: register.php');
 }
@@ -24,6 +24,14 @@ else if($input == 'Login'){ // call login function and show Login interface
 else if($input == 'AddQuote'){// call add Quote function and show add Quote PHP page
 	header('location: addQuote.php');
 } 
+else if($input == 'logout'){
+	session_start();
+	session_destroy();
+	$id = $_COOKIE['userId'];
+	setcookie('userId',$id,time()-1);
+	header('location: index.php');
+	
+}
 /*
 if(isset($_POST['register_button']) ){
 	header('location: register.php');

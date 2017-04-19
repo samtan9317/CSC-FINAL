@@ -37,6 +37,12 @@ class DatabaseAdaptor {
   	$stmt->execute ();
   	return $stmt->fetchAll ( PDO::FETCH_ASSOC );
   }
+  public function joinQuotes($id){
+  	$stmt = $this->DB->prepare ( "SELECT * FROM quotes WHERE
+  								  id = 0 or id = " . $id );
+  	$stmt->execute ();
+  	return $stmt->fetchAll ( PDO::FETCH_ASSOC );
+  }
   public function getUserQuotes($id){
   	$stmt = $this->DB->prepare ("SELECT * FROM quotes WHERE id = " . $id);
   	$stmt->execute ();
