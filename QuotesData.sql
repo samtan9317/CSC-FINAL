@@ -51,8 +51,7 @@ CREATE TABLE `quotes` (
   `rank` int(11) NOT NULL DEFAULT '0',
   `flag` int(2) NOT NULL DEFAULT '0',
   `phrase` varchar(1000) DEFAULT NULL,
-  `author` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `author` varchar(100) DEFAULT NULL
 
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -64,7 +63,14 @@ CREATE TABLE `quotes` (
 
 LOCK TABLES `quotes` WRITE;
 /*!40000 ALTER TABLE `quotes` DISABLE KEYS */;
-INSERT INTO `quotes` VALUES (0, 0, 0, 'The earlyworm gets the bird', 'Dave Farber');
+INSERT INTO `quotes` VALUES (0, 5, 0, 'The earlyworm gets the bird', 'Dave Farber');
+INSERT INTO `quotes` VALUES (0, 0, 0, 'Walking on water and developing software from a specification are easy if both are frozen', 'Edward Berard');
+INSERT INTO `quotes` VALUES (0, 2, 0, 'My mission in life is notmerely to survive, but to thrive; and to do so with some passion, some compassion, some humor, and some style.', 'Maya Angelou');
+INSERT INTO `quotes` VALUES (0, 3, 0, 'You will be free or die', 'Harriet Tubman');
+INSERT INTO `quotes` VALUES (0, 6, 0, 'We realize the importance of our voices only when we are silenced.' , 'Malala Yousafzai');
+INSERT INTO `quotes` VALUES (0, 1, 0, "Eccentricity is the greatest grief's greatest remedy", 'Vladimir Nabokov');
+INSERT INTO `quotes` VALUES (0, 7, 0, 'Nothin drives me more crazy than human stupidity', 'someone');
+
 /*!40000 ALTER TABLE `quotes` ENABLE KEYS */;
 UNLOCK TABLES;
 

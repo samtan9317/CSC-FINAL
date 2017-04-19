@@ -25,7 +25,7 @@ class DatabaseAdaptor {
   
   // Return all movies records as an associative array.
   public function getAllQuotes() {
-  	$stmt = $this->DB->prepare ( "SELECT * FROM quotes" );
+  	$stmt = $this->DB->prepare ( "SELECT * FROM quotes WHERE id = 0 ORDER BY rank DESC" );
   	$stmt->execute ();
   	return $stmt->fetchAll ( PDO::FETCH_ASSOC );
   }

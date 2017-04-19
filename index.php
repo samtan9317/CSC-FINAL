@@ -28,6 +28,8 @@
 
 
 <?php
+	include 'model.php';
+
 	if(isset($_COOKIE['userId'])){
 		$id = $_COOKIE['userId'];
 		//show logout button
@@ -36,7 +38,6 @@
 		    document.getElementById("buttons").style.display = "inline";
 		</script>';
 		
-		include 'model.php';
 		$str = '';
 		$arr = $theDBA->checkLogin();
 		$quotes = $theDBA->joinQuotes($id);
@@ -48,7 +49,7 @@
 						'flag = ' . $quotes{$i}{'flag'} . '<br> </div>';
 			}
 		}
-		echo  $str;
+	}
 /* 		echo 
 		'<script>
 			var str = "<?php echo $str ?>";
@@ -56,9 +57,21 @@
 		
 		
 		</script>
-		' */;
+		' */
+	else{
+
+		$quotes = $theDBA->getAllQuotes();
+		$str = '';
+		for($i = 0;$i < sizeof($quotes);$i++){
+			if($quotes{$i}{'flag'} == 0){
+				$str .= '<div class = "container">"'. $quotes{$i}{'phrase'}. '"<br>'.
+						'<span class = "author">---' . $quotes{$i}{'author'}. '</span><br>' .
+						'Rank = ' . $quotes{$i}{'rank'} . ' ' .
+						'flag = ' . $quotes{$i}{'flag'} . '<br> </div>';
+			}
+		}
 	}
-	
+	echo  $str;
 
 ?>
 <script>
