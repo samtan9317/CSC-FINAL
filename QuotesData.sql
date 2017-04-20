@@ -37,6 +37,41 @@ CREATE TABLE `logins` (
 LOCK TABLES `logins` WRITE;
 /*!40000 ALTER TABLE `logins` DISABLE KEYS */;
 INSERT INTO `logins` VALUES (0, 'admin', 'password');
+INSERT INTO `logins` VALUES (1, 'sam', 'password');
+UNLOCK TABLES;
+
+
+--
+-- Table structure for table `userQuotes`
+--
+
+DROP TABLE IF EXISTS `userQuotes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `userQuotes` (
+  `userId` int(11) NOT NULL DEFAULT '0',
+  `quoteId` int(11) DEFAULT NULL,
+  `rank` int(11) DEFAULT NULL,
+  `flag` int(11) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `userQuotes`
+--
+
+LOCK TABLES `userQuotes` WRITE;
+/*!40000 ALTER TABLE `userQuotes` DISABLE KEYS */;
+INSERT INTO `userQuotes` VALUES (0, 1, 7, 0);
+INSERT INTO `userQuotes` VALUES (0, 2, 6, 0);
+INSERT INTO `userQuotes` VALUES (0, 3, 5, 0);
+INSERT INTO `userQuotes` VALUES (0, 4, 4, 0);
+INSERT INTO `userQuotes` VALUES (0, 5, 2, 0);
+INSERT INTO `userQuotes` VALUES (0, 6, 3, 0);
+INSERT INTO `userQuotes` VALUES (0, 7, 1, 0);
+INSERT INTO `userQuotes` VALUES (1, 1, 7, 0);
+INSERT INTO `userQuotes` VALUES (1, 2, 6, 0);
+INSERT INTO `userQuotes` VALUES (1, 3, 5, 0);
 UNLOCK TABLES;
 
 --
@@ -47,9 +82,7 @@ DROP TABLE IF EXISTS `quotes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `quotes` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `rank` int(11) NOT NULL DEFAULT '0',
-  `flag` int(2) NOT NULL DEFAULT '0',
+  `quoteId` int(11) NOT NULL DEFAULT '0', 
   `phrase` varchar(1000) DEFAULT NULL,
   `author` varchar(100) DEFAULT NULL
 
@@ -63,13 +96,13 @@ CREATE TABLE `quotes` (
 
 LOCK TABLES `quotes` WRITE;
 /*!40000 ALTER TABLE `quotes` DISABLE KEYS */;
-INSERT INTO `quotes` VALUES (0, 5, 0, 'The earlyworm gets the bird', 'Dave Farber');
-INSERT INTO `quotes` VALUES (0, 0, 0, 'Walking on water and developing software from a specification are easy if both are frozen', 'Edward Berard');
-INSERT INTO `quotes` VALUES (0, 2, 0, 'My mission in life is notmerely to survive, but to thrive; and to do so with some passion, some compassion, some humor, and some style.', 'Maya Angelou');
-INSERT INTO `quotes` VALUES (0, 3, 0, 'You will be free or die', 'Harriet Tubman');
-INSERT INTO `quotes` VALUES (0, 6, 0, 'We realize the importance of our voices only when we are silenced.' , 'Malala Yousafzai');
-INSERT INTO `quotes` VALUES (0, 1, 0, "Eccentricity is the greatest grief's greatest remedy", 'Vladimir Nabokov');
-INSERT INTO `quotes` VALUES (0, 7, 0, 'Nothin drives me more crazy than human stupidity', 'someone');
+INSERT INTO `quotes` VALUES (1, 'The earlyworm gets the bird', 'Dave Farber');
+INSERT INTO `quotes` VALUES (2, 'Walking on water and developing software from a specification are easy if both are frozen', 'Edward Berard');
+INSERT INTO `quotes` VALUES (3, 'My mission in life is notmerely to survive, but to thrive; and to do so with some passion, some compassion, some humor, and some style.', 'Maya Angelou');
+INSERT INTO `quotes` VALUES (4, 'You will be free or die', 'Harriet Tubman');
+INSERT INTO `quotes` VALUES (5, 'We realize the importance of our voices only when we are silenced.' , 'Malala Yousafzai');
+INSERT INTO `quotes` VALUES (6, "Eccentricity is the greatest grief's greatest remedy", 'Vladimir Nabokov');
+INSERT INTO `quotes` VALUES (7, 'Nothin drives me more crazy than human stupidity', 'someone');
 
 /*!40000 ALTER TABLE `quotes` ENABLE KEYS */;
 UNLOCK TABLES;

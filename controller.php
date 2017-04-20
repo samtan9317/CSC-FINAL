@@ -11,8 +11,8 @@
 //include 'addQuote.php';
 
  //check if input value was passed correctly to php
-
-$input = $_POST['input'];
+if(isset($_REQUEST['input'])){
+$input = $_REQUEST['input'];
 if($input == 'Register' ){
 	header('location: register.php');
 }
@@ -30,7 +30,34 @@ else if($input == 'logout'){
 	$id = $_COOKIE['userId'];
 	setcookie('userId',$id,time()-1);
 	header('location: index.php');
-	
+}
+else if($input == 'UnflagAll'){
+	$ID = $_COOKIE['userId'];
+	include 'model.php';
+	$theDBA->unflag($ID);
+	header('location: index.php');
+}
+else if($input == 'upRank'){
+	$quoteId = $_REQUEST['quoteId'];
+	$ID = $_COOKIE['userId'];
+ 	include 'model.php';
+	$theDBA->upRankVote($ID,$quoteId); 
+} 
+else if($input == 'deRank'){
+	$quoteId = $_REQUEST['quoteId'];
+	$ID = $_COOKIE['userId'];
+	include 'model.php';
+	$theDBA->deRankVote($ID,$quoteId);
+}
+else if($input == 'setFlag'){
+	$quoteId = $_REQUEST['quoteId'];
+	$ID = $_COOKIE['userId'];
+	include 'model.php';
+	$theDBA->setFlag($ID,$quoteId);
+}
+}
+else{
+	//echo json_encode('Error');
 }
 /*
 if(isset($_POST['register_button']) ){

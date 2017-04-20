@@ -34,12 +34,6 @@ if(isset($_POST['login'])){
 			$id = $arr{$i}{'id'};
 			setcookie('userId',$id,time()*60*60*7);//set cookie to last for 7 days
 			$quotes = $theDBA->getUserQuotes($id);
-			for($i = 0;$i < sizeof($quotes);$i++){
-				$str .= 'Rank = ' . $quotes{$i}{'rank'} . ' ' .
-						'flag = ' . $quotes{$i}{'flag'} . '<br>' .
-						'Quotes: <br>' . $quotes{$i}{'phrase'};
-			}
-			
 		}
 	}
 	if($found == 0){

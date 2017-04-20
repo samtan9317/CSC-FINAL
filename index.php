@@ -19,6 +19,7 @@
 </form>
 <div id = "buttons" style = "display:none">
 	<form class = "clearBoth" action = "controller.php" method = "post">
+	<input class = "submitDec" type = "submit" name = "input" value = "UnflagAll">
 	<input class = "submitDec" type = "submit" name = "input" value = "logout">
 	</form>
 </div>
@@ -40,13 +41,13 @@
 		
 		$str = '';
 		$arr = $theDBA->checkLogin();
-		$quotes = $theDBA->joinQuotes($id);
+		$quotes = $theDBA->getUserQuotes($id);
 			for($i = 0;$i < sizeof($quotes);$i++){
 				if($quotes{$i}{'flag'} == 0){
 				$str .= '<div class = "container">"'. $quotes{$i}{'phrase'}. '"<br>'. 
 						'<span class = "author">---' . $quotes{$i}{'author'}. '</span><br>' .
-						'Rank = ' . $quotes{$i}{'rank'} . ' ' .
-						'flag = ' . $quotes{$i}{'flag'} . '<br> </div>';
+						'<input type = "button" onclick = "upRank(this)" id = ' . $quotes{$i}{'quoteId'}. ' value = "+"> ' . $quotes{$i}{'rank'} . ' ' .
+						'<input type = "button" onclick = "deRank(this)" id = ' . $quotes{$i}{'quoteId'}. ' value = "-"> <input type = "button" onclick = "setFlag(this)" id = ' . $quotes{$i}{'quoteId'}. ' value = "Flag"><br> <span id = "quoteId" value = ' . $quotes{$i}{'quoteId'} .'</span></div>';
 			}
 		}
 	}
@@ -66,27 +67,53 @@
 			if($quotes{$i}{'flag'} == 0){
 				$str .= '<div class = "container">"'. $quotes{$i}{'phrase'}. '"<br>'.
 						'<span class = "author">---' . $quotes{$i}{'author'}. '</span><br>' .
-						'Rank = ' . $quotes{$i}{'rank'} . ' ' .
-						'flag = ' . $quotes{$i}{'flag'} . '<br> </div>';
-			}
+						'<input type = "button" onclick = "upRank(this)" id = ' . $quotes{$i}{'quoteId'}. ' value = "+"> ' . $quotes{$i}{'rank'} . ' ' .
+						'<input type = "button" onclick = "deRank(this)" id = ' . $quotes{$i}{'quoteId'}. ' value = "-"> <input type = "button" onclick = "setFlag(this)" id = ' . $quotes{$i}{'quoteId'}. ' value = "Flag"><br></div>';
+							}
 		}
 	}
 	echo  $str;
 
 ?>
 <script>
-	var divToChange = document.getElementById("toChange");
-	function mode(input){
-	var anObj = new XMLHttpRequest();
-	input = input.defaultValue;
-
-	anObj.open("GET","controller.php?mode=" + input, true);
-	anObj.send();
+	function upRank(input){
+		var anObj = new XMLHttpRequest();
+		var quoteId = input.id;
 	
-	anObj.onreadystatechange = function() {
-             //render output data
-	} 
-			
+		anObj.open("POST","controller.php?input="+ 'upRank' + '&quoteId=' + quoteId, true);
+		anObj.send();
+		
+		anObj.onreadystatechange = function() { 
+		if(anObj.readyState == 4 && anObj.status == 200){
+			location.reload();
+		  }
+		} 		
+	}
+	function deRank(input){
+		var anObj = new XMLHttpRequest();
+		var quoteId = input.id;
+	
+		anObj.open("POST","controller.php?input="+ 'deRank' + '&quoteId=' + quoteId, true);
+		anObj.send();
+		
+		anObj.onreadystatechange = function() { 
+		if(anObj.readyState == 4 && anObj.status == 200){
+			location.reload();
+		  }
+		} 		
+	}
+	function setFlag(input){
+		var anObj = new XMLHttpRequest();
+		var quoteId = input.id;
+	
+		anObj.open("POST","controller.php?input="+ 'setFlag' + '&quoteId=' + quoteId, true);
+		anObj.send();
+		
+		anObj.onreadystatechange = function() { 
+		if(anObj.readyState == 4 && anObj.status == 200){
+			location.reload();
+		  }
+		} 		
 	}
 </script>
 
