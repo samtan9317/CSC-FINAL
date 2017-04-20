@@ -9,11 +9,11 @@ class DatabaseAdaptor {
   public function __construct() {
     $db = 'mysql:dbname=QuotesData;host=127.0.0.1;charset=utf8';
  // 	$db = 'mysql:dbname=QuotesData;host=127.0.0.1;charset=utf8';
-  	 
+
     $user = 'root';
     $password = '';
-    
-    
+
+
     try {
       $this->DB = new PDO ( $db, $user, $password );
       $this->DB->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
@@ -22,7 +22,7 @@ class DatabaseAdaptor {
       exit ();
     }
   }
-  
+
   // Return all movies records as an associative array.
   public function getAllQuotes() {
   	$stmt = $this->DB->prepare ( "SELECT userquotes.rank, userquotes.flag, quotes.phrase, quotes.author,userQuotes.quoteId From userquotes JOIN quotes ON userQuotes.quoteId = quotes.quoteId and userQuotes.userId = 0 AND userQuotes.flag = 0 ORDER BY userQuotes.rank DESC" );
@@ -30,7 +30,14 @@ class DatabaseAdaptor {
   	return $stmt->fetchAll ( PDO::FETCH_ASSOC );
   }
   public function addNewUser($user, $pass) {
-  	return;
+  	$stmt = $this->DB->prepare ( "SELECT * FROM logins " );
+  	$stmt->execute ();
+  	$arr = $stmt->fetchAll ( PDO::FETCH_ASSOC );
+
+  	$num = count ( $arr );
+
+  	$stmt = $this->DB->prepare ( "INSERT INTO logins VALUES (".$num.", '" .$user."', '".$pass."')" );
+  	$stmt->execute ();
   }
   public function checkLogin(){
   	$stmt = $this->DB->prepare ( "SELECT * FROM logins " );
@@ -64,7 +71,7 @@ class DatabaseAdaptor {
   	$stmt->execute ();
   }
 
- 
+
 } // End class DatabaseAdaptor
 
 // Testing code that should not be run when a part of MVC
@@ -74,5 +81,5 @@ $theDBA = new DatabaseAdaptor ();
 //print_r($arr);
 
 
- 
+
 ?>
