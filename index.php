@@ -38,7 +38,6 @@
 		'<script>
 		    document.getElementById("buttons").style.display = "inline";
 		</script>';
-		
 		$str = '';
 		$arr = $theDBA->checkLogin();
 		$quotes = $theDBA->getUserQuotes($id);

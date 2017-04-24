@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+:hover {
+	background-color:orange;
+}
+
 .buttonDec{
 	background-color:grey;
 	border-radius:10px 10px 0 0;
@@ -41,4 +45,12 @@
 }
 h2 {
 	text-align:center;
+}
+
+.Authors {
+	
+}
+.Quotes {
+	width: 200px;
+	height: 100px;
 }

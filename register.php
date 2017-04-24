@@ -27,6 +27,8 @@ if(isset($_POST['login'])){
 	$pass = $_POST['password'];
 	
 	$theDBA->addNewUser($user, $pass);	
+	
+	header("location: index.php");
 }
 
 ?>

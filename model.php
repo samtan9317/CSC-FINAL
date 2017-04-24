@@ -39,6 +39,21 @@ class DatabaseAdaptor {
   	$stmt = $this->DB->prepare ( "INSERT INTO logins VALUES (".$num.", '" .$user."', '".$pass."')" );
   	$stmt->execute ();
   }
+  public function addNewQuote($quote, $author, $userId) {
+  	$stmt = $this->DB->prepare ( "SELECT * FROM quotes " );
+  	$stmt->execute ();
+  	$arr = $stmt->fetchAll ( PDO::FETCH_ASSOC );
+  	
+  	$num = count ( $arr );
+  	$flag = 0;
+  	
+  	$stmt = $this->DB->prepare ( "INSERT INTO userQuotes VALUES (".$userId.", ".$num.", ".$flag.", ".$flag.")" );
+  	$stmt->execute ();
+	
+  	$stmt = $this->DB->prepare ( "INSERT INTO quotes VALUES (".$num.", '" .$quote."', '".$author."')" );
+  	$stmt->execute ();
+  }
+  
   public function checkLogin(){
   	$stmt = $this->DB->prepare ( "SELECT * FROM logins " );
   	$stmt->execute ();
@@ -77,8 +92,13 @@ class DatabaseAdaptor {
 // Testing code that should not be run when a part of MVC
 $theDBA = new DatabaseAdaptor ();
 
-//$arr = $theDBA->getAllQuotes ();
-//print_r($arr);
+//$theDBA->addNewQuote('My name is Sam', 'Sam', 3);
+
+/*$arr = $theDBA->getAllQuotes();
+print_r($arr);
+
+$arr2 = $theDBA->getUserQuotes();
+print_r($arr2);*/
 
 
 

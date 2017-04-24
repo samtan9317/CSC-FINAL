@@ -14,7 +14,7 @@
 <h1>Login</h1>
 <div class = "loginCon" >
 <form action = '' method = "post">
-Username<input style = "margin:5px" type = "text" name = "username"><br>
+Username <input style = "margin:5px" type = "text" name = "username"><br>
 Password <input style = "margin:5px" type = "password" name = "password"><br>
 <input style = "margin:10px" type = "submit" name = "login" value = "Login">
 </form>
@@ -32,8 +32,8 @@ if(isset($_POST['login'])){
 
 			$found = 1;
 			$id = $arr{$i}{'id'};
-			setcookie('userId',$id,time()*60*60*7);//set cookie to last for 7 days
-			$quotes = $theDBA->getUserQuotes($id);
+			setcookie('userId',$id,time()*60); //set cookie to last for 7 days
+			//$quotes = $theDBA->getUserQuotes($id);
 		}
 	}
 	if($found == 0){
@@ -42,7 +42,7 @@ if(isset($_POST['login'])){
 	else{
 		print_r($str);
 		session_start();
-		$_SESSION[$id];
+		$_SESSION[$id] = $id;
 		header('location: index.php'); 
 	
 	}
