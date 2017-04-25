@@ -25,10 +25,22 @@ if(isset($_POST['login'])){
 	include 'model.php';
 	$user = $_POST['username'];
 	$pass = $_POST['password'];
-	
+	$arr = $theDBA->checkLogin();
+	for($i = 0; $i<sizeof($arr);$i++){
+		
+		if($_POST['username'] == $arr{$i}{'account_name'}){
+			
+			$found = 1;
+			break;
+		}
+	}
+	if($found == 1){
+		print_r("<div class = 'clearBoth' >Username is already taken!!</div>");
+	}
+	else{
 	$theDBA->addNewUser($user, $pass);	
-	
 	header("location: index.php");
+	}
 }
 
 ?>

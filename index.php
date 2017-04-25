@@ -30,7 +30,7 @@
 
 <?php
 	include 'model.php';
-
+//	$theDBA->encrypt();
 	if(isset($_COOKIE['userId'])){
 		$id = $_COOKIE['userId'];
 		//show logout button
@@ -75,10 +75,15 @@
 
 ?>
 <script>
+/* 	function changeColor($input){
+		debugger;
+			document.getElementbyId($input).style.backgroundColor = "orange";
+
+	} */
 	function upRank(input){
 		var anObj = new XMLHttpRequest();
 		var quoteId = input.id;
-	
+		
 		anObj.open("POST","controller.php?input="+ 'upRank' + '&quoteId=' + quoteId, true);
 		anObj.send();
 		

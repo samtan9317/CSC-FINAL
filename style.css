@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-:hover {
+#hover {
 	background-color:orange;
 }
 
@@ -47,10 +47,8 @@ h2 {
 	text-align:center;
 }
 
-.Authors {
-	
-}
 .Quotes {
+	overflow: scroll;
 	width: 200px;
 	height: 100px;
 }

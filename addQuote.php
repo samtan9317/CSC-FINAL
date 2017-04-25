@@ -16,8 +16,8 @@
 <div id = "AddTheQuote" style = "display:none">
 <div class = "loginCon" >
 <form action = '' method = "post">
-Quote<input class = "Quotes" style = "margin:5px" type = "text" name = "quote"><br>
-Author <input class = "Authors" style = "margin:5px" type = "text" name = "author"><br>
+Quote   <input class = "Quotes" style = "margin:5px" type = "text" name = "quote"> <br>
+Author <input style = "margin:5px" type = "text" name = "author"><br>
 <input style = "margin:10px" type = "submit" name = "addQuote" value = "Add Quote">
 </form>
 </div>
@@ -44,10 +44,9 @@ if(isset($_COOKIE['userId'])){
 		header("location: index.php");
 	
 	}
-	
-	//$theDBA->addNewQuote($quote, $author, $user);	
-	
-	//header("location: index.php");
+}
+else {
+	print_r("<h1>Login Required!</h1>");
 }
 
 ?>

@@ -14,7 +14,7 @@
 <h1>Login</h1>
 <div class = "loginCon" >
 <form action = '' method = "post">
-Username <input style = "margin:5px" type = "text" name = "username"><br>
+Username<input style = "margin:5px" type = "text" name = "username"><br>
 Password <input style = "margin:5px" type = "password" name = "password"><br>
 <input style = "margin:10px" type = "submit" name = "login" value = "Login">
 </form>
@@ -28,7 +28,7 @@ if(isset($_POST['login'])){
 	$arr = $theDBA->checkLogin();
 	for($i = 0; $i<sizeof($arr);$i++){
 		
-		if($_POST['username'] == $arr{$i}{'account_name'} and $_POST['password'] == $arr{$i}{'password'}){
+		if($_POST['username'] == $arr{$i}{'account_name'} and (password_verify($_POST['password'], $arr{$i}{'password'})) == 1){
 
 			$found = 1;
 			$id = $arr{$i}{'id'};
@@ -40,7 +40,6 @@ if(isset($_POST['login'])){
 		print_r("<div class = 'clearBoth' >User does not exist!!</div>");
 	}
 	else{
-		print_r($str);
 		session_start();
 		$_SESSION[$id] = $id;
 		header('location: index.php'); 

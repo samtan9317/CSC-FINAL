@@ -35,8 +35,8 @@ class DatabaseAdaptor {
   	$arr = $stmt->fetchAll ( PDO::FETCH_ASSOC );
 
   	$num = count ( $arr );
-
-  	$stmt = $this->DB->prepare ( "INSERT INTO logins VALUES (".$num.", '" .$user."', '".$pass."')" );
+	$hashed = password_hash($pass, PASSWORD_DEFAULT);
+  	$stmt = $this->DB->prepare ( "INSERT INTO logins VALUES (".$num.", '" .$user."', '".$hashed."')" );
   	$stmt->execute ();
   }
   public function addNewQuote($quote, $author, $userId) {
@@ -53,7 +53,23 @@ class DatabaseAdaptor {
   	$stmt = $this->DB->prepare ( "INSERT INTO quotes VALUES (".$num.", '" .$quote."', '".$author."')" );
   	$stmt->execute ();
   }
-  
+  public function encrypt(){
+  	$stmt = $this->DB->prepare ( "SELECT password FROM logins WHERE id = 0" );
+  	$stmt->execute ();
+  	$arr = $stmt->fetchAll( PDO::FETCH_ASSOC );
+  	$password = $arr{0}{'password'};
+  	$hashed = password_hash($password, PASSWORD_DEFAULT);
+  //	return password_hash($password, PASSWORD_DEFAULT);
+  	$stmt1 = $this->DB->prepare ( "UPDATE logins SET password = " .'"'.$hashed.'"'." WHERE id = 0");
+  	$stmt1->execute ();
+  	
+  	$arr1 = $this->DB->prepare ( "SELECT * FROM logins WHERE id = 1" );
+  	$arr1->execute();
+  	$arr1 = $stmt->fetchAll( PDO::FETCH_ASSOC );
+  	$password2 = $arr1{0}{'password'};
+  	$stmt2 = $this->DB->prepare ( "UPDATE logins SET password = " . '"' .password_hash($password2, PASSWORD_DEFAULT). '"' . " WHERE id = 1");
+  	$stmt2->execute ();  
+  }
   public function checkLogin(){
   	$stmt = $this->DB->prepare ( "SELECT * FROM logins " );
   	$stmt->execute ();

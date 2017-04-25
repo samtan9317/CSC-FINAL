@@ -34,11 +34,6 @@ CREATE TABLE `logins` (
 -- Dumping data for table `logins`
 --
 
-LOCK TABLES `logins` WRITE;
-/*!40000 ALTER TABLE `logins` DISABLE KEYS */;
-INSERT INTO `logins` VALUES (0, 'admin', 'password');
-INSERT INTO `logins` VALUES (1, 'sam', 'password');
-UNLOCK TABLES;
 
 
 --
