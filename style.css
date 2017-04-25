@@ -1,9 +1,11 @@
 @charset "UTF-8";
 
-#hover {
+.buttonDec:hover {
 	background-color:orange;
 }
-
+.submitDec:hover {
+	background-color:orange;
+}
 .buttonDec{
 	background-color:grey;
 	border-radius:10px 10px 0 0;
