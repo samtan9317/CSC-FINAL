@@ -37,6 +37,8 @@ class DatabaseAdaptor {
   	$num = count ( $arr );
 	$hashed = password_hash($pass, PASSWORD_DEFAULT);
   	$stmt = $this->DB->prepare ( "INSERT INTO logins VALUES (".$num.", '" .$user."', '".$hashed."')" );
+  	$stmt->bindParam('account_name', $user);
+  	$stmt->bindParam('password', $hashed);
   	$stmt->execute ();
   }
   public function addNewQuote($quote, $author, $userId) {
@@ -48,9 +50,13 @@ class DatabaseAdaptor {
   	$flag = 0;
   	
   	$stmt = $this->DB->prepare ( "INSERT INTO userQuotes VALUES (".$userId.", ".$num.", ".$flag.", ".$flag.")" );
+  	$stmt->bindParam('phrase', $quote);
+  	$stmt->bindParam('author', $author);
   	$stmt->execute ();
 	
   	$stmt = $this->DB->prepare ( "INSERT INTO quotes VALUES (".$num.", '" .$quote."', '".$author."')" );
+  	$stmt->bindParam('phrase', $quote);
+  	$stmt->bindParam('author', $author);
   	$stmt->execute ();
   }
   public function encrypt(){
