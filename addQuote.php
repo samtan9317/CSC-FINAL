@@ -25,7 +25,6 @@ Author <input style = "margin:5px" type = "text" name = "author"><br>
 <div id = "missUser"></div>
 <?php
 
-if(isset($_COOKIE['userId'])){
 	echo
 	'<script>
 		   document.getElementById("AddTheQuote").style.display = "inline";
@@ -48,10 +47,6 @@ if(isset($_COOKIE['userId'])){
 	else {
 		print_r('<div class = "clearBoth">Please enter both quotes and author correctly.</div>');
 	}
-}
-}
-else {
-	print_r("<h1>Login Required!</h1>");
 }
 
 ?>
