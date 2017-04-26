@@ -25,7 +25,7 @@ class DatabaseAdaptor {
 
   // Return all movies records as an associative array.
   public function getAllQuotes() {
-  	$stmt = $this->DB->prepare ( "SELECT userquotes.rank, userquotes.flag, quotes.phrase, quotes.author,userQuotes.quoteId From userquotes JOIN quotes ON userQuotes.quoteId = quotes.quoteId and userQuotes.userId = 0 AND userQuotes.flag = 0 ORDER BY userQuotes.rank DESC" );
+  	$stmt = $this->DB->prepare ( "SELECT quotes.rank, quotes.flag, quotes.phrase, quotes.author,quotes.quoteId From quotes ORDER BY quotes.rank DESC" );
   	$stmt->execute ();
   	return $stmt->fetchAll ( PDO::FETCH_ASSOC );
   }
@@ -48,13 +48,9 @@ class DatabaseAdaptor {
   	
   	$num = count ( $arr ) + 1;
    	$flag = 0;
-  	
-  	$stmt = $this->DB->prepare ( "INSERT INTO userQuotes VALUES (".$userId.", ".$num.", ".$flag.", ".$flag.")" );
-  	$stmt->bindParam('phrase', $quote);
-  	$stmt->bindParam('author', $author);
-  	$stmt->execute ();
+
 	
-  	$stmt = $this->DB->prepare ( "INSERT INTO quotes VALUES (".$num.", '" .$quote."', '".$author."')" );
+  	$stmt = $this->DB->prepare ( "INSERT INTO quotes VALUES (".$num.", ". 0 ." , ". 0 ." ,'" .$quote."', '".$author."')" );
   	$stmt->bindParam('phrase', $quote);
   	$stmt->bindParam('author', $author);
   	$stmt->execute (); 
@@ -91,20 +87,20 @@ class DatabaseAdaptor {
   	$stmt->execute ();
   	return $stmt->fetchAll ( PDO::FETCH_ASSOC );
   }
-  public function upRankVote($userId,$quoteId){
-  	$stmt = $this->DB->prepare("UPDATE userquotes SET rank = userquotes.rank+1 WHERE userId = " . $userId. " and quoteId = " . $quoteId);
+  public function upRankVote($quoteId){
+  	$stmt = $this->DB->prepare("UPDATE quotes SET rank = quotes.rank+1 WHERE quoteId = " . $quoteId);
  	$stmt->execute ();
   }
-  public function deRankVote($userId,$quoteId){
-  	$stmt = $this->DB->prepare("UPDATE userquotes SET rank = userquotes.rank-1 WHERE userId = " . $userId. " and quoteId = " . $quoteId);
+  public function deRankVote($quoteId){
+  	$stmt = $this->DB->prepare("UPDATE quotes SET rank = quotes.rank-1 WHERE quoteId = " . $quoteId);
   	$stmt->execute ();
   }
-  public function setFlag($userId,$quoteId){
-  	$stmt = $this->DB->prepare("UPDATE userquotes SET flag = (CASE flag WHEN 1 THEN 0 ELSE 1 END) WHERE userId = " . $userId. " and quoteId = " . $quoteId);
+  public function setFlag($quoteId){
+  	$stmt = $this->DB->prepare("UPDATE quotes SET flag = (CASE flag WHEN 1 THEN 0 ELSE 1 END) WHERE quoteId = " . $quoteId);
   	$stmt->execute ();
   }
   public function unflag($userId){
-  	$stmt = $this->DB->prepare("UPDATE userquotes SET flag = 0 WHERE userId =  " . $userId);
+  	$stmt = $this->DB->prepare("UPDATE quotes SET flag = 0" );
   	$stmt->execute ();
   }
 
