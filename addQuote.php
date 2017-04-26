@@ -30,8 +30,8 @@ if(isset($_COOKIE['userId'])){
 	'<script>
 		   document.getElementById("AddTheQuote").style.display = "inline";
 	</script>';
-	
 	if(isset($_POST['addQuote'])){
+	if($_POST['quote'] != NULL and $_POST['author'] != NULL){
 		include 'model.php';
 		include 'login.php';
 		$quote = $_POST['quote'];
@@ -43,7 +43,12 @@ if(isset($_COOKIE['userId'])){
 		
 		header("location: index.php");
 	
+		}
+	
+	else {
+		print_r('<div class = "clearBoth">Please enter both quotes and author correctly.</div>');
 	}
+}
 }
 else {
 	print_r("<h1>Login Required!</h1>");

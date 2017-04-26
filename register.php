@@ -14,8 +14,8 @@
 <h1>Register</h1>
 <div class = "loginCon" >
 <form action = '' method = "post">
-Username<input style = "margin:5px" type = "text" name = "username"><br>
-Password <input style = "margin:5px" type = "password" name = "password"><br>
+Username<input style = "margin:5px" type = "text" pattern = ".{4,}" name = "username"><br>
+Password <input style = "margin:5px" type = "password" pattern = ".{6,}" name = "password"><br>
 <input style = "margin:10px" type = "submit" name = "login" value = "Create Account">
 </form>
 </div>

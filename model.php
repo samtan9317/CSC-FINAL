@@ -7,7 +7,7 @@ class DatabaseAdaptor {
   // Make a connection to an existing data based named 'imdb_small' that has
   // table . In this assignment you will also need a new table named 'users'
   public function __construct() {
-    $db = 'mysql:dbname=QuotesData;host=127.0.0.1;charset=utf8';
+    $db = 'mysql:dbname=dump;host=127.0.0.1;charset=utf8';
  // 	$db = 'mysql:dbname=QuotesData;host=127.0.0.1;charset=utf8';
 
     $user = 'root';
@@ -34,7 +34,7 @@ class DatabaseAdaptor {
   	$stmt->execute ();
   	$arr = $stmt->fetchAll ( PDO::FETCH_ASSOC );
 
-  	$num = count ( $arr );
+  	$num = count ( $arr ) ;
 	$hashed = password_hash($pass, PASSWORD_DEFAULT);
   	$stmt = $this->DB->prepare ( "INSERT INTO logins VALUES (".$num.", '" .$user."', '".$hashed."')" );
   	$stmt->bindParam('account_name', $user);
@@ -46,8 +46,8 @@ class DatabaseAdaptor {
   	$stmt->execute ();
   	$arr = $stmt->fetchAll ( PDO::FETCH_ASSOC );
   	
-  	$num = count ( $arr );
-  	$flag = 0;
+  	$num = count ( $arr ) + 1;
+   	$flag = 0;
   	
   	$stmt = $this->DB->prepare ( "INSERT INTO userQuotes VALUES (".$userId.", ".$num.", ".$flag.", ".$flag.")" );
   	$stmt->bindParam('phrase', $quote);
@@ -57,7 +57,7 @@ class DatabaseAdaptor {
   	$stmt = $this->DB->prepare ( "INSERT INTO quotes VALUES (".$num.", '" .$quote."', '".$author."')" );
   	$stmt->bindParam('phrase', $quote);
   	$stmt->bindParam('author', $author);
-  	$stmt->execute ();
+  	$stmt->execute (); 
   }
   public function encrypt(){
   	$stmt = $this->DB->prepare ( "SELECT password FROM logins WHERE id = 0" );
