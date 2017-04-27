@@ -23,8 +23,8 @@ Password <input style = "margin:5px" type = "password" pattern = ".{6,}" name = 
 <?php
 if(isset($_POST['login'])){
 	include 'model.php';
-	$user = $_POST['username'];
-	$pass = $_POST['password'];
+	$user = htmlspecialchars($_POST['username']);
+	$pass = htmlspecialchars($_POST['password']);
 	$arr = $theDBA->checkLogin();
 	for($i = 0; $i<sizeof($arr);$i++){
 		

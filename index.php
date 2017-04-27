@@ -44,14 +44,14 @@
 		$str = '';
 		for($i = 0;$i < sizeof($quotes);$i++){
 			if($quotes{$i}{'flag'} == 0){
-				$str .= '<div class = "container">"'. $quotes{$i}{'phrase'}. '"<br>'.
+				$str .= '<div class = "container">"'. htmlspecialchars($quotes{$i}{'phrase'}). '"<br>'.
 						'<span class = "author">---' . $quotes{$i}{'author'}. '</span><br>' .
 						'<input type = "button" onclick = "upRank(this)" id = ' . $quotes{$i}{'quoteId'}. ' value = "+"> ' . $quotes{$i}{'rank'} . ' ' .
 						'<input type = "button" onclick = "deRank(this)" id = ' . $quotes{$i}{'quoteId'}. ' value = "-"> <input type = "button" onclick = "setFlag(this)" id = ' . $quotes{$i}{'quoteId'}. ' value = "Flag"><br></div>';
 							}
 		}
 
-	echo  htmlspecialchars($str);
+	echo  $str;
 
 ?>
 <script>

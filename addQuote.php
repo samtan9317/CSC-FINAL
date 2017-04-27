@@ -33,8 +33,8 @@ Author <input style = "margin:5px" type = "text" name = "author"><br>
 	if($_POST['quote'] != NULL and $_POST['author'] != NULL){
 		include 'model.php';
 		include 'login.php';
-		$quote = $_POST['quote'];
-		$author = $_POST['author'];
+		$quote = htmlspecialchars($_POST['quote']);
+		$author = htmlspecialchars($_POST['author']);
 	
 		$user = $_COOKIE['userId'];
 	
