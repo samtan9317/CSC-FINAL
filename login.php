@@ -28,7 +28,7 @@ if(isset($_POST['login'])){
 	$arr = $theDBA->checkLogin();
 	for($i = 0; $i<sizeof($arr);$i++){
 		
-		if($_POST['username'] == $arr{$i}{'account_name'} and (password_verify($_POST['password'], $arr{$i}{'password'})) == 1){
+		if(htmlspecialchars($_POST['username']) == $arr{$i}{'account_name'} and (password_verify(htmlspecialchars($_POST['password']), $arr{$i}{'password'})) == 1){
 
 			$found = 1;
 			$id = $arr{$i}{'id'};
