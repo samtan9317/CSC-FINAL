@@ -51,7 +51,7 @@
 							}
 		}
 
-	echo  $str;
+	echo  htmlspecialchars($str);
 
 ?>
 <script>
