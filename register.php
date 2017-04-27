@@ -34,8 +34,11 @@ if(isset($_POST['login'])){
 			break;
 		}
 	}
-	if(sizeof($user) < 4 || sizeof($pass) < 4){
-		print_r("<div class = 'clearBoth' >Username too small</div>");
+	if(strlen($user) < 4){
+		print_r("<div class = 'clearBoth' >Username/Password too small</div>");
+	}
+	else if(strlen($pass) < 4){
+		print_r("<div class = 'clearBoth' >Username/Password too small</div>");
 	}
 	else if($found == 1){
 		print_r("<div class = 'clearBoth' >Username is already taken!!</div>");
