@@ -26,6 +26,9 @@ if(isset($_POST['login'])){
 	$user = $_POST['username'];
 	$pass = $_POST['password'];
 	$arr = $theDBA->checkLogin();
+	if(sizeof($user) < 4 || sizeof($pass) < 4){
+		print_r("<div class = 'clearBoth' >Username too small</div>");
+	}
 	for($i = 0; $i<sizeof($arr);$i++){
 		
 		if($_POST['username'] == $arr{$i}{'account_name'}){
@@ -34,6 +37,7 @@ if(isset($_POST['login'])){
 			break;
 		}
 	}
+	
 	if($found == 1){
 		print_r("<div class = 'clearBoth' >Username is already taken!!</div>");
 	}
